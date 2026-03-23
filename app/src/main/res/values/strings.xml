@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MK Wallet</string>
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_transactions">Transactions</string>
+    <string name="nav_budget">Budget</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="income">Income</string>
+    <string name="expense">Expense</string>
+    <string name="net_balance">Net Balance</string>
+    <string name="monthly_budget">Monthly Budget</string>
+    <string name="recurring_expense">Recurring Expense</string>
+    <string name="export_csv">Export CSV</string>
+    <string name="no_transactions">No transactions yet</string>
+    <string name="budget_alert_50">You have used 50%% of your monthly budget</string>
+    <string name="budget_alert_75">Warning! You have used 75%% of your monthly budget</string>
+    <string name="budget_exceeded">Budget exceeded!</string>
+    <string name="file_provider_authority">${applicationId}.provider</string>
+</resources>

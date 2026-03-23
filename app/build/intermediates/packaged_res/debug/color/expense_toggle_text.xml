@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- When selected — white so text/icon shows on the pink fill -->
+    <item android:color="@color/input_text" android:state_checked="true" />
+    <!-- When not selected — use theme's default pink/rose color -->
+    <item android:color="#000000" />
+</selector>

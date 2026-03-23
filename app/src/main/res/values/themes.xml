@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.ExpenseTracker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_variant</item>
+        <item name="colorOnSecondary">@android:color/black</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        <!-- Fixing the invisible input field text and outlines -->
+        <item name="colorOnBackground">@color/text_primary</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:editTextColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_secondary</item>
+
+        <!-- Fixing Toolbar background and text color -->
+        <item name="actionBarStyle">@style/CustomActionBar</item>
+        <item name="actionBarTheme">@style/CustomActionBarTheme</item>
+
+        <!-- Status bar matches toolbar -->
+        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+
+        <!-- Rounded corners for dialogs -->
+        <item name="materialAlertDialogTheme">@style/RoundedAlertDialog</item>
+    </style>
+
+    <!-- Colored ActionBar style -->
+    <style name="CustomActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="background">@color/primary</item>
+        <item name="titleTextStyle">@style/ActionBarTitleText</item>
+        <item name="elevation">4dp</item>
+    </style>
+
+    <!-- White title text on colored bar -->
+    <style name="ActionBarTitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- White icons (back arrow, overflow menu) on colored bar -->
+    <style name="CustomActionBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <style name="RoundedAlertDialog" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="shapeAppearanceMediumComponent">@style/RoundedShape</item>
+    </style>
+
+    <style name="RoundedShape" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+</resources>

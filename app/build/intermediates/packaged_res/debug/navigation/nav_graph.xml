@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.expensetracker.ui.dashboard.DashboardFragment"
+        android:label="Dashboard">
+        <action
+            android:id="@+id/action_dashboard_to_addTransaction"
+            app:destination="@id/addTransactionActivity" />
+        <action
+            android:id="@+id/action_dashboard_to_transactions"
+            app:destination="@id/transactionsFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_budget"
+            app:destination="@id/budgetActivity" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="com.expensetracker.ui.transactions.TransactionsFragment"
+        android:label="Transactions">
+        <action
+            android:id="@+id/action_transactions_to_addTransaction"
+            app:destination="@id/addTransactionActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/addTransactionActivity"
+        android:name="com.expensetracker.ui.transactions.AddTransactionActivity"
+        android:label="Add Transaction" />
+
+    <activity
+        android:id="@+id/budgetActivity"
+        android:name="com.expensetracker.ui.budget.BudgetActivity"
+        android:label="Budget" />
+
+</navigation>

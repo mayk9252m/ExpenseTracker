@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-mergeDebugResources-58:\\layout\\activity_add_transaction.xml",
+        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\activity_add_transaction.xml"
+    },
+    {
+        "merged": "com.expensetracker.app-mergeDebugResources-58:/layout/activity_add_transaction.xml",
+        "source": "com.expensetracker.app-main-61:/layout/activity_add_transaction.xml"
+    },
+    {
+        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-mergeDebugResources-58:\\layout\\fragment_transactions.xml",
+        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\fragment_transactions.xml"
+    },
+    {
+        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-mergeDebugResources-58:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-mergeDebugResources-58:\\layout\\fragment_dashboard.xml",
+        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\fragment_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-mergeDebugResources-58:\\layout\\item_budget_category.xml",
+        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\item_budget_category.xml"
+    },
+    {
+        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-mergeDebugResources-58:\\layout\\item_transaction.xml",
+        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\item_transaction.xml"
+    },
+    {
+        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-mergeDebugResources-58:\\layout\\activity_budget.xml",
+        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\activity_budget.xml"
+    }
+]
