@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\layout_item_transaction.xml.flat",
-        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\item_transaction.xml"
-    },
-    {
         "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\drawable_budget_progress_drawable.xml.flat",
         "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\drawable\\budget_progress_drawable.xml"
+    },
+    {
+        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\layout_item_transaction.xml.flat",
+        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\item_transaction.xml"
     },
     {
         "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
@@ -48,12 +48,12 @@
         "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\fragment_transactions.xml"
     },
     {
-        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\drawable_ic_list.xml.flat",
-        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\drawable\\ic_list.xml"
-    },
-    {
         "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\drawable_ic_list.xml.flat",
+        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\drawable\\ic_list.xml"
     },
     {
         "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\drawable_ic_launcher_background.xml.flat",
@@ -94,6 +94,10 @@
     {
         "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\drawable_bg_stat_card.xml.flat",
         "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\drawable\\bg_stat_card.xml"
+    },
+    {
+        "merged": "com.expensetracker.app-merged_res-59:/layout_fragment_dashboard.xml.flat",
+        "source": "com.expensetracker.app-main-61:/layout/fragment_dashboard.xml"
     },
     {
         "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\layout_activity_budget.xml.flat",
@@ -144,8 +148,8 @@
         "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\item_budget_category.xml"
     },
     {
-        "merged": "com.expensetracker.app-merged_res-59:/color_expense_toggle_text.xml.flat",
-        "source": "com.expensetracker.app-main-61:/color/expense_toggle_text.xml"
+        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\drawable_bg_category_circle.xml.flat",
+        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\drawable\\bg_category_circle.xml"
     },
     {
         "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\mipmap-mdpi_ic_launcher_round.webp.flat",
@@ -164,11 +168,11 @@
         "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\activity_main.xml"
-    },
-    {
         "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\mipmap-xxhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-merged_res-59:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Mayank Shrivastava\\.gradle\\daemon\\8.10\\com.expensetracker.app-main-61:\\layout\\activity_main.xml"
     }
 ]

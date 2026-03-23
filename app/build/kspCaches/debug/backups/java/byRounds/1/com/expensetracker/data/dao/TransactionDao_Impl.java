@@ -276,18 +276,18 @@ public final class TransactionDao_Impl implements TransactionDao {
   }
 
   @Override
-  public LiveData<List<Transaction>> getTransactionsByMonth(final String month, final String year) {
+  public LiveData<List<Transaction>> getTransactionsByMonth(final long startOfMonth,
+      final long endOfMonth) {
     final String _sql = "\n"
             + "        SELECT * FROM transactions \n"
-            + "        WHERE strftime('%m', date/1000, 'unixepoch') = ? \n"
-            + "        AND strftime('%Y', date/1000, 'unixepoch') = ? \n"
+            + "        WHERE date >= ? And date <= ?\n"
             + "        ORDER BY date DESC\n"
             + "    ";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
     int _argIndex = 1;
-    _statement.bindString(_argIndex, month);
+    _statement.bindLong(_argIndex, startOfMonth);
     _argIndex = 2;
-    _statement.bindString(_argIndex, year);
+    _statement.bindLong(_argIndex, endOfMonth);
     return __db.getInvalidationTracker().createLiveData(new String[] {"transactions"}, false, new Callable<List<Transaction>>() {
       @Override
       @Nullable
@@ -343,20 +343,19 @@ public final class TransactionDao_Impl implements TransactionDao {
   }
 
   @Override
-  public LiveData<List<Transaction>> getTransactionsByMonthAndType(final String month,
-      final String year, final String type) {
+  public LiveData<List<Transaction>> getTransactionsByMonthAndType(final long startOfMonth,
+      final long endOfMonth, final String type) {
     final String _sql = "\n"
             + "        SELECT * FROM transactions \n"
-            + "        WHERE strftime('%m', date/1000, 'unixepoch') = ? \n"
-            + "        AND strftime('%Y', date/1000, 'unixepoch') = ? \n"
+            + "        WHERE date >= ? AND date <= ?\n"
             + "        AND type = ?\n"
             + "        ORDER BY date DESC\n"
             + "    ";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 3);
     int _argIndex = 1;
-    _statement.bindString(_argIndex, month);
+    _statement.bindLong(_argIndex, startOfMonth);
     _argIndex = 2;
-    _statement.bindString(_argIndex, year);
+    _statement.bindLong(_argIndex, endOfMonth);
     _argIndex = 3;
     _statement.bindString(_argIndex, type);
     return __db.getInvalidationTracker().createLiveData(new String[] {"transactions"}, false, new Callable<List<Transaction>>() {
@@ -414,18 +413,17 @@ public final class TransactionDao_Impl implements TransactionDao {
   }
 
   @Override
-  public LiveData<Double> getTotalExpensesForMonth(final String month, final String year) {
+  public LiveData<Double> getTotalExpensesForMonth(final long startOfMonth, final long endOfMonth) {
     final String _sql = "\n"
             + "        SELECT COALESCE(SUM(amount), 0.0) FROM transactions \n"
-            + "        WHERE strftime('%m', date/1000, 'unixepoch') = ? \n"
-            + "        AND strftime('%Y', date/1000, 'unixepoch') = ? \n"
+            + "        WHERE date >= ? AND date <= ?\n"
             + "        AND type = 'EXPENSE'\n"
             + "    ";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
     int _argIndex = 1;
-    _statement.bindString(_argIndex, month);
+    _statement.bindLong(_argIndex, startOfMonth);
     _argIndex = 2;
-    _statement.bindString(_argIndex, year);
+    _statement.bindLong(_argIndex, endOfMonth);
     return __db.getInvalidationTracker().createLiveData(new String[] {"transactions"}, false, new Callable<Double>() {
       @Override
       @Nullable
@@ -458,18 +456,17 @@ public final class TransactionDao_Impl implements TransactionDao {
   }
 
   @Override
-  public LiveData<Double> getTotalIncomeForMonth(final String month, final String year) {
+  public LiveData<Double> getTotalIncomeForMonth(final long startOfMonth, final long endOfMonth) {
     final String _sql = "\n"
             + "        SELECT COALESCE(SUM(amount), 0.0) FROM transactions \n"
-            + "        WHERE strftime('%m', date/1000, 'unixepoch') = ? \n"
-            + "        AND strftime('%Y', date/1000, 'unixepoch') = ? \n"
+            + "        WHERE date >= ? AND date <= ?\n"
             + "        AND type = 'INCOME'\n"
             + "    ";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
     int _argIndex = 1;
-    _statement.bindString(_argIndex, month);
+    _statement.bindLong(_argIndex, startOfMonth);
     _argIndex = 2;
-    _statement.bindString(_argIndex, year);
+    _statement.bindLong(_argIndex, endOfMonth);
     return __db.getInvalidationTracker().createLiveData(new String[] {"transactions"}, false, new Callable<Double>() {
       @Override
       @Nullable
@@ -502,20 +499,19 @@ public final class TransactionDao_Impl implements TransactionDao {
   }
 
   @Override
-  public Object getTotalExpensesForCategory(final String month, final String year,
+  public Object getTotalExpensesForCategory(final long startOfMonth, final long endOfMonth,
       final String category, final Continuation<? super Double> $completion) {
     final String _sql = "\n"
             + "        SELECT COALESCE(SUM(amount), 0.0) FROM transactions \n"
-            + "        WHERE strftime('%m', date/1000, 'unixepoch') = ? \n"
-            + "        AND strftime('%Y', date/1000, 'unixepoch') = ? \n"
+            + "        WHERE date >= ? AND date <= ?\n"
             + "        AND type = 'EXPENSE'\n"
             + "        AND category = ?\n"
             + "    ";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 3);
     int _argIndex = 1;
-    _statement.bindString(_argIndex, month);
+    _statement.bindLong(_argIndex, startOfMonth);
     _argIndex = 2;
-    _statement.bindString(_argIndex, year);
+    _statement.bindLong(_argIndex, endOfMonth);
     _argIndex = 3;
     _statement.bindString(_argIndex, category);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -599,20 +595,20 @@ public final class TransactionDao_Impl implements TransactionDao {
   }
 
   @Override
-  public LiveData<List<Transaction>> getTopExpenses(final String month, final String year) {
+  public LiveData<List<Transaction>> getTopExpenses(final long startOfMonth,
+      final long endOfMonth) {
     final String _sql = "\n"
             + "        SELECT * FROM transactions \n"
             + "        WHERE type = 'EXPENSE' \n"
-            + "        AND strftime('%m', date/1000, 'unixepoch') = ? \n"
-            + "        AND strftime('%Y', date/1000, 'unixepoch') = ? \n"
+            + "        AND date >= ? AND date <= ?\n"
             + "        ORDER BY amount DESC \n"
             + "        LIMIT 5\n"
             + "    ";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
     int _argIndex = 1;
-    _statement.bindString(_argIndex, month);
+    _statement.bindLong(_argIndex, startOfMonth);
     _argIndex = 2;
-    _statement.bindString(_argIndex, year);
+    _statement.bindLong(_argIndex, endOfMonth);
     return __db.getInvalidationTracker().createLiveData(new String[] {"transactions"}, false, new Callable<List<Transaction>>() {
       @Override
       @Nullable
@@ -668,19 +664,19 @@ public final class TransactionDao_Impl implements TransactionDao {
   }
 
   @Override
-  public LiveData<List<CategorySum>> getExpensesByCategory(final String month, final String year) {
+  public LiveData<List<CategorySum>> getExpensesByCategory(final long startOfMonth,
+      final long endOfMonth) {
     final String _sql = "\n"
             + "        SELECT category, SUM(amount) as total FROM transactions \n"
             + "        WHERE type = 'EXPENSE' \n"
-            + "        AND strftime('%m', date/1000, 'unixepoch') = ? \n"
-            + "        AND strftime('%Y', date/1000, 'unixepoch') = ? \n"
+            + "        AND date >= ? AND date <= ?\n"
             + "        GROUP BY category\n"
             + "    ";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 2);
     int _argIndex = 1;
-    _statement.bindString(_argIndex, month);
+    _statement.bindLong(_argIndex, startOfMonth);
     _argIndex = 2;
-    _statement.bindString(_argIndex, year);
+    _statement.bindLong(_argIndex, endOfMonth);
     return __db.getInvalidationTracker().createLiveData(new String[] {"transactions"}, false, new Callable<List<CategorySum>>() {
       @Override
       @Nullable

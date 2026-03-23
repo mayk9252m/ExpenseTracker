@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.expensetracker.data.db.AppDatabase
 import com.expensetracker.data.model.Transaction
 import com.expensetracker.data.repository.TransactionRepository
-import com.expensetracker.util.DateUtils
 import kotlinx.coroutines.launch
 
 class TransactionsViewModel(application: Application) : AndroidViewModel(application) {
@@ -23,14 +22,11 @@ class TransactionsViewModel(application: Application) : AndroidViewModel(applica
         val db = AppDatabase.getDatabase(application)
         repository = TransactionRepository(db.transactionDao())
 
-        // ✅ Use repository directly — no broken extension function
         transactions = _filter.switchMap { filter ->
-            val month = DateUtils.getCurrentMonth()
-            val year = DateUtils.getCurrentYear()
             when (filter) {
-                "INCOME"  -> repository.getTransactionsByMonthAndType(month, year, "INCOME")
-                "EXPENSE" -> repository.getTransactionsByMonthAndType(month, year, "EXPENSE")
-                else      -> repository.getTransactionsByMonth(month, year)
+                "INCOME"  -> repository.getTransactionsByMonthAndType("INCOME")
+                "EXPENSE" -> repository.getTransactionsByMonthAndType("EXPENSE")
+                else      -> repository.getTransactionsByMonth()
             }
         }
     }

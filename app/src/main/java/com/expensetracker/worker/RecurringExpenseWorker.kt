@@ -25,12 +25,13 @@ class RecurringExpenseWorker(
         val recurringTransactions = repo.getRecurringTransactions()
         val today = Calendar.getInstance()
         val currentDay = today.get(Calendar.DAY_OF_MONTH)
-        val currentMonth = DateUtils.getCurrentMonth()
-        val currentYear = DateUtils.getCurrentYear()
+
+        // ✅ Now using Int instead of String
+        val currentMonth = DateUtils.getCurrentMonthInt()
+        val currentYear = DateUtils.getCurrentYearInt()
 
         recurringTransactions.forEach { recurring ->
             if (recurring.recurringDay == currentDay) {
-                // Add this month's instance
                 val newTransaction = Transaction(
                     title = recurring.title,
                     amount = recurring.amount,
@@ -38,9 +39,10 @@ class RecurringExpenseWorker(
                     type = recurring.type,
                     date = System.currentTimeMillis(),
                     note = "Auto-added (recurring)",
-                    isRecurring = false   // The instance itself is not recurring
+                    isRecurring = false
                 )
                 repo.insert(newTransaction)
+
                 NotificationHelper.sendRecurringExpenseNotification(
                     context, recurring.title, recurring.amount
                 )
@@ -55,22 +57,33 @@ class RecurringExpenseWorker(
         return Result.success()
     }
 
+    // ✅ Parameters are now Int instead of String
     private suspend fun checkBudgetAfterExpense(
         repo: TransactionRepository,
         budgetRepo: BudgetRepository,
-        month: String,
-        year: String
+        month: Int,
+        year: Int
     ) {
-        val totalSpent = repo.getTotalExpensesForCategory(month, year, "OVERALL")
-        val budget = budgetRepo.getOverallBudgetSync(
-            DateUtils.getCurrentMonthInt(), DateUtils.getCurrentYearInt()
-        ) ?: return
+        val budget = budgetRepo.getOverallBudgetSync(month, year) ?: return
+
+        // ✅ Calling with Int parameters matching updated repository
+        val totalSpent = repo.getTotalExpensesForCategory(
+            category = "OVERALL",
+            month = month,
+            year = year
+        )
 
         val percent = ((totalSpent / budget.monthlyLimit) * 100).toInt()
         when {
-            percent >= 100 -> NotificationHelper.sendBudgetAlert(context, 100, totalSpent, budget.monthlyLimit)
-            percent >= 75 -> NotificationHelper.sendBudgetAlert(context, 75, totalSpent, budget.monthlyLimit)
-            percent >= 50 -> NotificationHelper.sendBudgetAlert(context, 50, totalSpent, budget.monthlyLimit)
+            percent >= 100 -> NotificationHelper.sendBudgetAlert(
+                context, 100, totalSpent, budget.monthlyLimit
+            )
+            percent >= 75  -> NotificationHelper.sendBudgetAlert(
+                context, 75, totalSpent, budget.monthlyLimit
+            )
+            percent >= 50  -> NotificationHelper.sendBudgetAlert(
+                context, 50, totalSpent, budget.monthlyLimit
+            )
         }
     }
 
@@ -82,7 +95,7 @@ class RecurringExpenseWorker(
                 .setRequiresBatteryNotLow(false)
                 .build()
 
-            // Calculate delay to midnight
+            // Calculate delay until next midnight
             val now = Calendar.getInstance()
             val midnight = Calendar.getInstance().apply {
                 add(Calendar.DAY_OF_YEAR, 1)
@@ -93,7 +106,9 @@ class RecurringExpenseWorker(
             }
             val delayMillis = midnight.timeInMillis - now.timeInMillis
 
-            val request = PeriodicWorkRequestBuilder<RecurringExpenseWorker>(1, TimeUnit.DAYS)
+            val request = PeriodicWorkRequestBuilder<RecurringExpenseWorker>(
+                1, TimeUnit.DAYS
+            )
                 .setInitialDelay(delayMillis, TimeUnit.MILLISECONDS)
                 .setConstraints(constraints)
                 .build()

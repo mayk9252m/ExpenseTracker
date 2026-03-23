@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.expensetracker.R;
-import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.charts.BarChart;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import java.lang.NullPointerException;
@@ -24,6 +24,9 @@ import java.lang.String;
 public final class FragmentDashboardBinding implements ViewBinding {
   @NonNull
   private final NestedScrollView rootView;
+
+  @NonNull
+  public final BarChart barChart;
 
   @NonNull
   public final LinearLayout budgetProgressLayout;
@@ -42,9 +45,6 @@ public final class FragmentDashboardBinding implements ViewBinding {
 
   @NonNull
   public final ExtendedFloatingActionButton fabAddTransaction;
-
-  @NonNull
-  public final PieChart pieChart;
 
   @NonNull
   public final ProgressBar progressBudget;
@@ -73,23 +73,22 @@ public final class FragmentDashboardBinding implements ViewBinding {
   @NonNull
   public final TextView tvTotalIncome;
 
-  private FragmentDashboardBinding(@NonNull NestedScrollView rootView,
+  private FragmentDashboardBinding(@NonNull NestedScrollView rootView, @NonNull BarChart barChart,
       @NonNull LinearLayout budgetProgressLayout, @NonNull MaterialCardView cardBalance,
       @NonNull MaterialCardView cardBudget, @NonNull MaterialCardView cardChart,
       @NonNull MaterialCardView cardRecent, @NonNull ExtendedFloatingActionButton fabAddTransaction,
-      @NonNull PieChart pieChart, @NonNull ProgressBar progressBudget,
-      @NonNull RecyclerView rvRecentTransactions, @NonNull TextView tvBudgetStatus,
-      @NonNull TextView tvMonth, @NonNull TextView tvNetBalance, @NonNull TextView tvNoTransactions,
-      @NonNull TextView tvSeeAllTransactions, @NonNull TextView tvTotalExpense,
-      @NonNull TextView tvTotalIncome) {
+      @NonNull ProgressBar progressBudget, @NonNull RecyclerView rvRecentTransactions,
+      @NonNull TextView tvBudgetStatus, @NonNull TextView tvMonth, @NonNull TextView tvNetBalance,
+      @NonNull TextView tvNoTransactions, @NonNull TextView tvSeeAllTransactions,
+      @NonNull TextView tvTotalExpense, @NonNull TextView tvTotalIncome) {
     this.rootView = rootView;
+    this.barChart = barChart;
     this.budgetProgressLayout = budgetProgressLayout;
     this.cardBalance = cardBalance;
     this.cardBudget = cardBudget;
     this.cardChart = cardChart;
     this.cardRecent = cardRecent;
     this.fabAddTransaction = fabAddTransaction;
-    this.pieChart = pieChart;
     this.progressBudget = progressBudget;
     this.rvRecentTransactions = rvRecentTransactions;
     this.tvBudgetStatus = tvBudgetStatus;
@@ -128,6 +127,12 @@ public final class FragmentDashboardBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.barChart;
+      BarChart barChart = ViewBindings.findChildViewById(rootView, id);
+      if (barChart == null) {
+        break missingId;
+      }
+
       id = R.id.budgetProgressLayout;
       LinearLayout budgetProgressLayout = ViewBindings.findChildViewById(rootView, id);
       if (budgetProgressLayout == null) {
@@ -161,12 +166,6 @@ public final class FragmentDashboardBinding implements ViewBinding {
       id = R.id.fabAddTransaction;
       ExtendedFloatingActionButton fabAddTransaction = ViewBindings.findChildViewById(rootView, id);
       if (fabAddTransaction == null) {
-        break missingId;
-      }
-
-      id = R.id.pieChart;
-      PieChart pieChart = ViewBindings.findChildViewById(rootView, id);
-      if (pieChart == null) {
         break missingId;
       }
 
@@ -224,8 +223,8 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentDashboardBinding((NestedScrollView) rootView, budgetProgressLayout,
-          cardBalance, cardBudget, cardChart, cardRecent, fabAddTransaction, pieChart,
+      return new FragmentDashboardBinding((NestedScrollView) rootView, barChart,
+          budgetProgressLayout, cardBalance, cardBudget, cardChart, cardRecent, fabAddTransaction,
           progressBudget, rvRecentTransactions, tvBudgetStatus, tvMonth, tvNetBalance,
           tvNoTransactions, tvSeeAllTransactions, tvTotalExpense, tvTotalIncome);
     }

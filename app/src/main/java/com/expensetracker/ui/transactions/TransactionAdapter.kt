@@ -1,8 +1,10 @@
 package com.expensetracker.ui.transactions
 
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +13,6 @@ import com.expensetracker.data.model.ExpenseCategory
 import com.expensetracker.data.model.IncomeCategory
 import com.expensetracker.data.model.Transaction
 import com.expensetracker.data.model.TransactionType
-import com.expensetracker.databinding.ItemTransactionBinding
 import com.expensetracker.util.DateUtils
 
 class TransactionAdapter(
@@ -19,50 +20,68 @@ class TransactionAdapter(
 ) : ListAdapter<Transaction, TransactionAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemTransactionBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
-        )
-        return ViewHolder(binding)
+        // ✅ Inflate manually without ViewBinding to rule out binding issues
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_transaction, parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    inner class ViewHolder(private val binding: ItemTransactionBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(itemView: android.view.View) : RecyclerView.ViewHolder(itemView) {
+
+        // ✅ Find views manually — no ViewBinding
+        private val tvTitle       = itemView.findViewById<TextView>(R.id.tvTitle)
+        private val tvCategory    = itemView.findViewById<TextView>(R.id.tvCategory)
+        private val tvDate        = itemView.findViewById<TextView>(R.id.tvDate)
+        private val tvAmount      = itemView.findViewById<TextView>(R.id.tvAmount)
+        private val viewIndicator = itemView.findViewById<View>(R.id.viewIndicator)
+        private val tvRecurring   = itemView.findViewById<TextView>(R.id.tvRecurringBadge)
 
         fun bind(transaction: Transaction) {
-            binding.tvTitle.text = transaction.title
-            binding.tvDate.text = DateUtils.formatDate(transaction.date)
-            binding.tvCategory.text = getCategoryDisplay(transaction)
-
             val isExpense = transaction.type == TransactionType.EXPENSE
+
+            tvTitle.text = transaction.title
+            tvTitle.setTextColor(Color.parseColor("#111111"))
+
+            tvCategory.text = getCategoryDisplay(transaction)
+            tvCategory.setTextColor(Color.parseColor("#777777"))
+
+            tvDate.text = DateUtils.formatDate(transaction.date)
+            tvDate.setTextColor(Color.parseColor("#AAAAAA"))
+
             val sign = if (isExpense) "- ₹" else "+ ₹"
-            binding.tvAmount.text = "$sign${String.format("%.2f", transaction.amount)}"
-            binding.tvAmount.setTextColor(
-                ContextCompat.getColor(
-                    binding.root.context,
-                    if (isExpense) R.color.expense_red else R.color.income_green
-                )
+            tvAmount.text = "$sign${String.format("%.2f", transaction.amount)}"
+            tvAmount.setTextColor(
+                if (isExpense) Color.parseColor("#E53935")
+                else Color.parseColor("#43A047")
             )
 
-            if (transaction.isRecurring) {
-                binding.ivRecurring.visibility = android.view.View.VISIBLE
-            } else {
-                binding.ivRecurring.visibility = android.view.View.GONE
-            }
+            viewIndicator.setBackgroundColor(
+                if (isExpense) Color.parseColor("#E53935")
+                else Color.parseColor("#43A047")
+            )
 
-            binding.root.setOnClickListener { onItemClick(transaction) }
+            tvRecurring.visibility =
+                if (transaction.isRecurring) View.VISIBLE else View.GONE
+
+            itemView.setBackgroundColor(Color.WHITE)
+            itemView.setOnClickListener { onItemClick(transaction) }
         }
 
         private fun getCategoryDisplay(transaction: Transaction): String {
             return if (transaction.type == TransactionType.EXPENSE) {
-                val cat = ExpenseCategory.values().find { it.name == transaction.category }
-                cat?.let { "${it.emoji} ${it.displayName}" } ?: transaction.category
+                ExpenseCategory.values()
+                    .find { it.name == transaction.category }
+                    ?.let { "${it.emoji} ${it.displayName}" }
+                    ?: transaction.category
             } else {
-                val cat = IncomeCategory.values().find { it.name == transaction.category }
-                cat?.let { "${it.emoji} ${it.displayName}" } ?: transaction.category
+                IncomeCategory.values()
+                    .find { it.name == transaction.category }
+                    ?.let { "${it.emoji} ${it.displayName}" }
+                    ?: transaction.category
             }
         }
     }
@@ -70,7 +89,6 @@ class TransactionAdapter(
     class DiffCallback : DiffUtil.ItemCallback<Transaction>() {
         override fun areItemsTheSame(oldItem: Transaction, newItem: Transaction) =
             oldItem.id == newItem.id
-
         override fun areContentsTheSame(oldItem: Transaction, newItem: Transaction) =
             oldItem == newItem
     }

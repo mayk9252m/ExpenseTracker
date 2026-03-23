@@ -5,20 +5,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.expensetracker.R;
-import com.google.android.material.card.MaterialCardView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class ItemTransactionBinding implements ViewBinding {
   @NonNull
-  private final MaterialCardView rootView;
+  private final LinearLayout rootView;
 
   @NonNull
   public final ImageView ivRecurring;
@@ -30,25 +30,38 @@ public final class ItemTransactionBinding implements ViewBinding {
   public final TextView tvCategory;
 
   @NonNull
+  public final TextView tvCategoryEmoji;
+
+  @NonNull
   public final TextView tvDate;
+
+  @NonNull
+  public final TextView tvRecurringBadge;
 
   @NonNull
   public final TextView tvTitle;
 
-  private ItemTransactionBinding(@NonNull MaterialCardView rootView, @NonNull ImageView ivRecurring,
-      @NonNull TextView tvAmount, @NonNull TextView tvCategory, @NonNull TextView tvDate,
-      @NonNull TextView tvTitle) {
+  @NonNull
+  public final View viewIndicator;
+
+  private ItemTransactionBinding(@NonNull LinearLayout rootView, @NonNull ImageView ivRecurring,
+      @NonNull TextView tvAmount, @NonNull TextView tvCategory, @NonNull TextView tvCategoryEmoji,
+      @NonNull TextView tvDate, @NonNull TextView tvRecurringBadge, @NonNull TextView tvTitle,
+      @NonNull View viewIndicator) {
     this.rootView = rootView;
     this.ivRecurring = ivRecurring;
     this.tvAmount = tvAmount;
     this.tvCategory = tvCategory;
+    this.tvCategoryEmoji = tvCategoryEmoji;
     this.tvDate = tvDate;
+    this.tvRecurringBadge = tvRecurringBadge;
     this.tvTitle = tvTitle;
+    this.viewIndicator = viewIndicator;
   }
 
   @Override
   @NonNull
-  public MaterialCardView getRoot() {
+  public LinearLayout getRoot() {
     return rootView;
   }
 
@@ -91,9 +104,21 @@ public final class ItemTransactionBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvCategoryEmoji;
+      TextView tvCategoryEmoji = ViewBindings.findChildViewById(rootView, id);
+      if (tvCategoryEmoji == null) {
+        break missingId;
+      }
+
       id = R.id.tvDate;
       TextView tvDate = ViewBindings.findChildViewById(rootView, id);
       if (tvDate == null) {
+        break missingId;
+      }
+
+      id = R.id.tvRecurringBadge;
+      TextView tvRecurringBadge = ViewBindings.findChildViewById(rootView, id);
+      if (tvRecurringBadge == null) {
         break missingId;
       }
 
@@ -103,8 +128,14 @@ public final class ItemTransactionBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemTransactionBinding((MaterialCardView) rootView, ivRecurring, tvAmount,
-          tvCategory, tvDate, tvTitle);
+      id = R.id.viewIndicator;
+      View viewIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (viewIndicator == null) {
+        break missingId;
+      }
+
+      return new ItemTransactionBinding((LinearLayout) rootView, ivRecurring, tvAmount, tvCategory,
+          tvCategoryEmoji, tvDate, tvRecurringBadge, tvTitle, viewIndicator);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

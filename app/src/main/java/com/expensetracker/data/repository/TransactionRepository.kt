@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.expensetracker.data.dao.CategorySum
 import com.expensetracker.data.dao.TransactionDao
 import com.expensetracker.data.model.Transaction
-import java.time.Month
+import com.expensetracker.util.DateUtils
 
 class TransactionRepository(private val transactionDao: TransactionDao) {
 
@@ -16,25 +16,63 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
 
     suspend fun delete(transaction: Transaction) = transactionDao.delete(transaction)
 
-    fun getTransactionsByMonth(month: String, year: String): LiveData<List<Transaction>> =
-        transactionDao.getTransactionsByMonth(month, year)
-
-    fun getTransactionsByMonthAndType(
-        month: String, year: String, type: String
+    // ✅ Uses timestamp range instead of strftime
+    fun getTransactionsByMonth(
+        month: Int = DateUtils.getCurrentMonthInt(),
+        year: Int = DateUtils.getCurrentYearInt()
     ): LiveData<List<Transaction>> =
-        transactionDao.getTransactionsByMonthAndType(month, year, type)
+        transactionDao.getTransactionsByMonth(
+            DateUtils.getStartOfMonth(month, year),
+            DateUtils.getEndOfMonth(month, year)
+        )
 
-    fun getTotalExpensesForMonth(month: String, year: String): LiveData<Double> =
-        transactionDao.getTotalExpensesForMonth(month, year)
+    // ✅ Filter by type using timestamp range
+    fun getTransactionsByMonthAndType(
+        type: String,
+        month: Int = DateUtils.getCurrentMonthInt(),
+        year: Int = DateUtils.getCurrentYearInt()
+    ): LiveData<List<Transaction>> =
+        transactionDao.getTransactionsByMonthAndType(
+            DateUtils.getStartOfMonth(month, year),
+            DateUtils.getEndOfMonth(month, year),
+            type
+        )
 
-    fun getTotalIncomeForMonth(month: String, year: String): LiveData<Double> =
-        transactionDao.getTotalIncomeForMonth(month, year)
+    fun getTotalExpensesForMonth(
+        month: Int = DateUtils.getCurrentMonthInt(),
+        year: Int = DateUtils.getCurrentYearInt()
+    ): LiveData<Double> =
+        transactionDao.getTotalExpensesForMonth(
+            DateUtils.getStartOfMonth(month, year),
+            DateUtils.getEndOfMonth(month, year)
+        )
 
-    fun getExpensesByCategory(month: String, year: String): LiveData<List<CategorySum>> =
-        transactionDao.getExpensesByCategory(month, year)
+    fun getTotalIncomeForMonth(
+        month: Int = DateUtils.getCurrentMonthInt(),
+        year: Int = DateUtils.getCurrentYearInt()
+    ): LiveData<Double> =
+        transactionDao.getTotalIncomeForMonth(
+            DateUtils.getStartOfMonth(month, year),
+            DateUtils.getEndOfMonth(month, year)
+        )
 
-    fun getTopExpenses(month: String, year: String): LiveData<List<Transaction>> =
-        transactionDao.getTopExpenses(month, year)
+    fun getExpensesByCategory(
+        month: Int = DateUtils.getCurrentMonthInt(),
+        year: Int = DateUtils.getCurrentYearInt()
+    ): LiveData<List<CategorySum>> =
+        transactionDao.getExpensesByCategory(
+            DateUtils.getStartOfMonth(month, year),
+            DateUtils.getEndOfMonth(month, year)
+        )
+
+    fun getTopExpenses(
+        month: Int = DateUtils.getCurrentMonthInt(),
+        year: Int = DateUtils.getCurrentYearInt()
+    ): LiveData<List<Transaction>> =
+        transactionDao.getTopExpenses(
+            DateUtils.getStartOfMonth(month, year),
+            DateUtils.getEndOfMonth(month, year)
+        )
 
     suspend fun getRecurringTransactions(): List<Transaction> =
         transactionDao.getRecurringTransactions()
@@ -42,6 +80,14 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
     suspend fun getAllTransactionsSync(): List<Transaction> =
         transactionDao.getAllTransactionsSync()
 
-    suspend fun getTotalExpensesForCategory(month: String, year: String, category: String): Double =
-        transactionDao.getTotalExpensesForCategory(month, year, category)
+    suspend fun getTotalExpensesForCategory(
+        category: String,
+        month: Int = DateUtils.getCurrentMonthInt(),
+        year: Int = DateUtils.getCurrentYearInt()
+    ): Double =
+        transactionDao.getTotalExpensesForCategory(
+            DateUtils.getStartOfMonth(month, year),
+            DateUtils.getEndOfMonth(month, year),
+            category
+        )
 }

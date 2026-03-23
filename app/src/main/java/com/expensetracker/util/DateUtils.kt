@@ -5,13 +5,34 @@ import java.util.*
 
 object DateUtils {
 
-    fun getCurrentMonth(): String = String.format("%02d", Calendar.getInstance().get(Calendar.MONTH) + 1)
+    fun getCurrentMonth(): String =
+        String.format("%02d", Calendar.getInstance().get(Calendar.MONTH) + 1)
 
-    fun getCurrentYear(): String = Calendar.getInstance().get(Calendar.YEAR).toString()
+    fun getCurrentYear(): String =
+        Calendar.getInstance().get(Calendar.YEAR).toString()
 
-    fun getCurrentMonthInt(): Int = Calendar.getInstance().get(Calendar.MONTH) + 1
+    fun getCurrentMonthInt(): Int =
+        Calendar.getInstance().get(Calendar.MONTH) + 1
 
-    fun getCurrentYearInt(): Int = Calendar.getInstance().get(Calendar.YEAR)
+    fun getCurrentYearInt(): Int =
+        Calendar.getInstance().get(Calendar.YEAR)
+
+    // ✅ Returns timestamp for first millisecond of the month
+    fun getStartOfMonth(month: Int = getCurrentMonthInt(), year: Int = getCurrentYearInt()): Long {
+        return Calendar.getInstance().apply {
+            set(year, month - 1, 1, 0, 0, 0)
+            set(Calendar.MILLISECOND, 0)
+        }.timeInMillis
+    }
+
+    // ✅ Returns timestamp for last millisecond of the month
+    fun getEndOfMonth(month: Int = getCurrentMonthInt(), year: Int = getCurrentYearInt()): Long {
+        return Calendar.getInstance().apply {
+            set(year, month - 1, 1, 23, 59, 59)
+            set(Calendar.MILLISECOND, 999)
+            set(Calendar.DAY_OF_MONTH, getActualMaximum(Calendar.DAY_OF_MONTH))
+        }.timeInMillis
+    }
 
     fun formatDate(timestamp: Long): String {
         val sdf = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())

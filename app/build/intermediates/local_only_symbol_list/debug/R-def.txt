@@ -28,6 +28,7 @@ dimen screen_padding
 dimen text_body
 dimen text_caption
 dimen text_title
+drawable bg_category_circle
 drawable bg_stat_card
 drawable budget_progress_drawable
 drawable ic_add
@@ -48,6 +49,7 @@ id action_transactions_to_addTransaction
 id actvCategory
 id addTransactionActivity
 id appBarLayout
+id barChart
 id bottom_navigation
 id btnExpense
 id btnIncome
@@ -76,7 +78,6 @@ id fabAddTransaction
 id ivRecurring
 id nav_graph
 id nav_host_fragment
-id pieChart
 id progressBudget
 id rvCategoryBudgets
 id rvRecentTransactions
@@ -94,16 +95,19 @@ id transactionsFragment
 id tvAmount
 id tvBudgetStatus
 id tvCategory
+id tvCategoryEmoji
 id tvCategoryName
 id tvDate
 id tvEmpty
 id tvMonth
 id tvNetBalance
 id tvNoTransactions
+id tvRecurringBadge
 id tvSeeAllTransactions
 id tvTitle
 id tvTotalExpense
 id tvTotalIncome
+id viewIndicator
 layout activity_add_transaction
 layout activity_budget
 layout activity_main

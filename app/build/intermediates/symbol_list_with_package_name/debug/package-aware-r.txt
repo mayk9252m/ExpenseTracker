@@ -3047,6 +3047,7 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable bg_category_circle
 drawable bg_stat_card
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -3261,6 +3262,7 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id barChart
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -3556,7 +3558,6 @@ id path
 id pathRelative
 id peekHeight
 id percent
-id pieChart
 id pin
 id pooling_container_listener_holder_tag
 id position
@@ -3702,12 +3703,14 @@ id triangle
 id tvAmount
 id tvBudgetStatus
 id tvCategory
+id tvCategoryEmoji
 id tvCategoryName
 id tvDate
 id tvEmpty
 id tvMonth
 id tvNetBalance
 id tvNoTransactions
+id tvRecurringBadge
 id tvSeeAllTransactions
 id tvTitle
 id tvTotalExpense
@@ -3718,6 +3721,7 @@ id unlabeled
 id up
 id useLogo
 id vertical_only
+id viewIndicator
 id view_offset_helper
 id view_transition
 id view_tree_lifecycle_owner

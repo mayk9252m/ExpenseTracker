@@ -8,6 +8,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.expensetracker.R
 import com.expensetracker.databinding.FragmentTransactionsBinding
 import com.expensetracker.util.CsvExporter
@@ -59,10 +60,18 @@ class TransactionsFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = TransactionAdapter { transaction ->
-            // TODO: Open edit/detail dialog
-        }
+        adapter = TransactionAdapter { }
+        binding.rvTransactions.layoutManager =
+            LinearLayoutManager(requireContext())
         binding.rvTransactions.adapter = adapter
+
+        // ✅ Add divider so we can see items even if text color is wrong
+        binding.rvTransactions.addItemDecoration(
+            androidx.recyclerview.widget.DividerItemDecoration(
+                requireContext(),
+                LinearLayoutManager.VERTICAL
+            )
+        )
     }
 
     private fun setupFilterChips() {
@@ -79,9 +88,15 @@ class TransactionsFragment : Fragment() {
 
     private fun observeData() {
         viewModel.transactions.observe(viewLifecycleOwner) { list ->
+            // ✅ Temporary debug log — check Logcat for these lines
+            android.util.Log.d("TransactionsDebug", "=== Transaction list updated ===")
+            android.util.Log.d("TransactionsDebug", "Total count: ${list.size}")
+            list.forEach {
+                android.util.Log.d("TransactionsDebug", "  → ${it.title} | ${it.amount} | ${it.type} | date=${it.date}")
+            }
+
             adapter.submitList(list)
 
-            // ✅ Show/hide empty state message
             if (list.isEmpty()) {
                 binding.tvEmpty.visibility = View.VISIBLE
                 binding.rvTransactions.visibility = View.GONE
