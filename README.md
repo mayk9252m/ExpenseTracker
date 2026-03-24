@@ -196,8 +196,8 @@ Date, Title, Category, Type, Amount, Note
 
 ## Working App Module
 
-<img width="1080" height="1350" alt="Screenshot 2026-03-23 202152" src="https://github.com/user-attachments/assets/8ce71234-f711-4f41-b9b7-5449d8de10f3" />
-<img width="1080" height="1350" alt="Screenshot 2026-03-23 202152" src="https://github.com/user-attachments/assets/bd878062-121d-49a8-a46b-bc0079905e59" />
-<img width="1080" height="1350" alt="Screenshot 2026-03-23 202152" src="https://github.com/user-attachments/assets/804c648d-c561-4a73-8f2f-60ea722746cf" />
-<img width="1080" height="1350" alt="Screenshot 2026-03-23 202152" src="https://github.com/user-attachments/assets/918611b0-4b56-4ad4-bcdd-99c0eba6366c" />
-<img width="1080" height="1350" alt="Screenshot 2026-03-23 202152" src="https://github.com/user-attachments/assets/38cd80b7-434d-425e-bbee-25b8951807c3" />
+<img width="540" height="858" alt="Screenshot 2026-03-23 202152" src="https://github.com/user-attachments/assets/8ce71234-f711-4f41-b9b7-5449d8de10f3" />
+<img width="540" height="858" alt="Screenshot 2026-03-23 202152" src="https://github.com/user-attachments/assets/bd878062-121d-49a8-a46b-bc0079905e59" />
+<img width="540" height="858" alt="Screenshot 2026-03-23 202152" src="https://github.com/user-attachments/assets/804c648d-c561-4a73-8f2f-60ea722746cf" />
+<img width="540" height="858" alt="Screenshot 2026-03-23 202152" src="https://github.com/user-attachments/assets/918611b0-4b56-4ad4-bcdd-99c0eba6366c" />
+<img width="540" height="858" alt="Screenshot 2026-03-23 202152" src="https://github.com/user-attachments/assets/38cd80b7-434d-425e-bbee-25b8951807c3" />
