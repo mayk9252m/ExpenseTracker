@@ -194,24 +194,12 @@ Date, Title, Category, Type, Amount, Note
 
 ---
 
-## 🚀 Optional Enhancements (Future)
+## Working App Module
 
-- [ ] Dark mode support (Night theme XML)
-- [ ] Monthly comparison charts (bar chart)
-- [ ] Search transactions by title
-- [ ] Password / biometric lock
-- [ ] Backup & restore (ZIP Room DB file)
-- [ ] Widget for home screen balance
-- [ ] Multiple currencies
 
----
+<img width="1080" height="1717" alt="Screenshot 2026-03-23 202152" src="https://github.com/user-attachments/assets/8ce71234-f711-4f41-b9b7-5449d8de10f3" />
+![Screenshot_2026-03-23-20-22-02-461_com](https://github.com/user-attachments/assets/bd878062-121d-49a8-a46b-bc0079905e59)
+![Screenshot_2026-03-23-20-22-12-897_com](https://github.com/user-attachments/assets/804c648d-c561-4a73-8f2f-60ea722746cf)
+![Screenshot_2026-03-23-20-22-22-343_com](https://github.com/user-attachments/assets/918611b0-4b56-4ad4-bcdd-99c0eba6366c)
+![Screenshot_2026-03-23-20-22-35-168_com](https://github.com/user-attachments/assets/38cd80b7-434d-425e-bbee-25b8951807c3)
 
-## 🐛 Common Issues
-
-| Problem | Fix |
-|---|---|
-| `FileProvider` crash on export | Make sure `file_provider_paths.xml` is in `res/xml/` and authority matches manifest |
-| Notifications not showing | Check `POST_NOTIFICATIONS` permission on Android 13+ |
-| WorkManager not running | Don't use `CANCEL_AND_REENQUEUE` — use `KEEP` policy |
-| Chart not rendering | Make sure `MPAndroidChart` JitPack dependency is added |
-| Room migration crash | Add `.fallbackToDestructiveMigration()` during development |
